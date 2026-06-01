@@ -39,8 +39,8 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 warnings.filterwarnings("ignore")
 
-DATA_PATH = "data/telco_churn.csv"
-OUT = "outputs"
+DATA_PATH = "telco_churn.csv"
+OUT = "."
 RANDOM_STATE = 42
 os.makedirs(OUT, exist_ok=True)
 
@@ -211,7 +211,7 @@ def main() -> None:
     print("[5/5] En iyi model kaydediliyor...")
     joblib.dump(best_pipe, f"{OUT}/best_model.joblib")
     print(f"  [+] Model -> {OUT}/best_model.joblib")
-    print("\nTAMAMLANDI. Tum ciktilar 'outputs/' klasorunde.")
+    print("\nTAMAMLANDI. Tum ciktilar ana dizinde olusturuldu.")
 
 
 if __name__ == "__main__":
