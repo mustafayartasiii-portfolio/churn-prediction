@@ -7,31 +7,25 @@ Telekom müşterilerinin **churn (hizmeti bırakma)** olasılığını tahmin ed
 ## 🎯 Problem
 Bir telekom şirketinde müşteri kaybı (churn), gelir kaybının en büyük nedenlerinden biridir. Risk altındaki müşterileri önceden tespit etmek, hedefli tutundurma (retention) kampanyalarıyla maliyeti düşürür. Bu proje, müşteri özelliklerinden churn olasılığını tahmin eder.
 
-## 📁 Proje Yapısı
-```
-churn-prediction/
-├── data/
-│   └── telco_churn.csv          # Veri seti (7.043 müşteri, 17 değişken)
-├── src/
-│   ├── generate_data.py         # Veri üretimi (tekrarlanabilir, seed=42)
-│   └── churn_model.py           # Ana pipeline: temizleme → EDA → model → değerlendirme
-├── outputs/
-│   ├── eda.png                  # Keşifsel analiz görselleri
-│   ├── roc_curves.png           # 3 modelin ROC eğrileri
-│   ├── confusion_matrix.png     # En iyi modelin hata matrisi
-│   ├── feature_importance.png   # En önemli 15 değişken
-│   ├── metrics.csv              # Model karşılaştırma tablosu
-│   └── best_model.joblib        # Kaydedilmiş en iyi model
-├── requirements.txt
-└── README.md
-```
-
 ## ⚙️ Kurulum & Çalıştırma
 ```bash
 pip install -r requirements.txt
-python src/generate_data.py    # veri setini üretir
-python src/churn_model.py       # modeli eğitir ve çıktıları üretir
+python generate_data.py    # veri setini üretir (telco_churn.csv)
+python churn_model.py      # modeli eğitir ve tüm çıktıları üretir
 ```
+
+## 📁 Dosyalar
+| Dosya | Açıklama |
+|---|---|
+| `generate_data.py` | Veri üretimi (tekrarlanabilir, seed=42) |
+| `churn_model.py` | Ana pipeline: temizleme → EDA → model → değerlendirme |
+| `telco_churn.csv` | Veri seti (7.043 müşteri, 17 değişken) |
+| `metrics.csv` | Model karşılaştırma tablosu |
+| `roc_curves.png` | 3 modelin ROC eğrileri |
+| `confusion_matrix.png` | En iyi modelin hata matrisi |
+| `feature_importance.png` | En önemli 15 değişken |
+| `eda.png` | Keşifsel analiz görselleri |
+| `best_model.joblib` | Kaydedilmiş en iyi model |
 
 ## 🔬 Yöntem
 1. **Temizleme:** `TotalCharges` sayısala çevrilir, eksik değerler `tenure × MonthlyCharges` ile doldurulur.
@@ -53,8 +47,9 @@ python src/churn_model.py       # modeli eğitir ve çıktıları üretir
 En önemli churn faktörleri: sözleşme tipi (month-to-month), tenure, internet servisi (fiber optik), ödeme yöntemi ve aylık ücret.
 
 ### Görseller
-![ROC](outputs/roc_curves.png)
-![EDA](outputs/eda.png)
+![ROC Eğrileri](roc_curves.png)
+![EDA](eda.png)
+![Feature Importance](feature_importance.png)
 
 ## 🛠 Teknolojiler
 `Python` · `pandas` · `numpy` · `scikit-learn` · `matplotlib` · `joblib`
