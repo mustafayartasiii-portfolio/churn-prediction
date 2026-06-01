@@ -89,7 +89,7 @@ def generate(n: int = N) -> pd.DataFrame:
 
 if __name__ == "__main__":
     df = generate()
-    out = "data/telco_churn.csv"
+    out = "telco_churn.csv"
     df.to_csv(out, index=False)
     rate = (df["Churn"] == "Yes").mean()
     print(f"Veri seti olusturuldu: {out}")
